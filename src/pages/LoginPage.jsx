@@ -34,12 +34,14 @@ export default function LoginPage() {
             type="email"
             placeholder="your@email.com"
             value={email}
+            className='mb-2'
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="password"
             value={password}
+            className='mb-2'
             onChange={(e) => setPassword(e.target.value)}
           />
           <button className="bg-primary w-full py-2 px-4 rounded-2xl text-white">
