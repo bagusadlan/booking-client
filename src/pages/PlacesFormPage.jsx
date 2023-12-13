@@ -8,6 +8,7 @@ import AccountNav from '../components/AccountNav'
 
 function PlacesFormPage() {
   const { placeId } = useParams()
+
   const [title, setTitle] = useState('')
   const [address, setAddress] = useState('')
   const [addedPhotos, setAddedPhotos] = useState([])
