@@ -1,22 +1,42 @@
 import axios from 'axios'
-import { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Navigate, useParams } from 'react-router-dom'
 
 import Perks from '../components/Perks'
 import PhotosUploader from '../components/PhotosUploader'
 import AccountNav from '../components/AccountNav'
 
 function PlacesFormPage() {
+  const {placeId} = useParams()
   const [title, setTitle] = useState('')
   const [address, setAddress] = useState('')
   const [addedPhotos, setAddedPhotos] = useState([])
   const [description, setDescription] = useState('')
   const [perks, setPerks] = useState([])
   const [extraInfo, setExtraInfo] = useState('')
-  const [checkIn, setCheckIn] = useState()
-  const [checkOut, setCheckOut] = useState()
+  const [checkIn, setCheckIn] = useState('')
+  const [checkOut, setCheckOut] = useState('')
   const [maxGuests, setMaxGuests] = useState(1)
   const [redirect, setRedirect] = useState(false)
+
+  useEffect(() => {
+    if (!placeId) return
+
+    axios.get('/places/' + placeId)
+    .then(({data}) => {
+      const place = data.data
+
+      setTitle(place.title)
+      setAddress(place.address)
+      setAddedPhotos(place.photos)
+      setDescription(place.description)
+      setPerks(place.perks)
+      setExtraInfo(place.extraInfo)
+      setCheckIn(place.checkIn)
+      setCheckOut(place.checkOut)
+      setMaxGuests(place.maxGuests)
+    })
+  }, []);
 
   function inputHeader(text) {
     return <h2 className="text-2xl mt-4">{text}</h2>
@@ -28,7 +48,7 @@ function PlacesFormPage() {
       await axios.post('/places', {
         title,
         address,
-        addedPhotos,
+        photos: addedPhotos,
         description,
         perks,
         extraInfo,
