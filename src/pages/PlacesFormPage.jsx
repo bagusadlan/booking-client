@@ -7,7 +7,7 @@ import PhotosUploader from '../components/PhotosUploader'
 import AccountNav from '../components/AccountNav'
 
 function PlacesFormPage() {
-  const {placeId} = useParams()
+  const { placeId } = useParams()
   const [title, setTitle] = useState('')
   const [address, setAddress] = useState('')
   const [addedPhotos, setAddedPhotos] = useState([])
@@ -22,8 +22,7 @@ function PlacesFormPage() {
   useEffect(() => {
     if (!placeId) return
 
-    axios.get('/places/' + placeId)
-    .then(({data}) => {
+    axios.get('/places/' + placeId).then(({ data }) => {
       const place = data.data
 
       setTitle(place.title)
@@ -36,16 +35,16 @@ function PlacesFormPage() {
       setCheckOut(place.checkOut)
       setMaxGuests(place.maxGuests)
     })
-  }, []);
+  }, [])
 
   function inputHeader(text) {
     return <h2 className="text-2xl mt-4">{text}</h2>
   }
 
-  async function addNewPlace(e) {
+  async function savePlace(e) {
     e.preventDefault()
     try {
-      await axios.post('/places', {
+      const placeData = {
         title,
         address,
         photos: addedPhotos,
@@ -55,7 +54,13 @@ function PlacesFormPage() {
         checkIn,
         checkOut,
         maxGuests
-      })
+      }
+
+      if (!placeId) {
+        await axios.post('/places', placeData)
+      } else {
+        await axios.put('/places', { id: placeId, ...placeData })
+      }
 
       setRedirect(true)
     } catch (error) {
@@ -68,7 +73,7 @@ function PlacesFormPage() {
   return (
     <div>
       <AccountNav />
-      <form onSubmit={addNewPlace}>
+      <form onSubmit={savePlace}>
         {inputHeader('Title')}
         <input
           type="text"
