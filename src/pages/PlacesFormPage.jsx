@@ -19,25 +19,6 @@ function PlacesFormPage() {
   const [maxGuests, setMaxGuests] = useState(1)
   const [redirect, setRedirect] = useState(false)
 
-  useEffect(() => {
-    if (!placeId) return
-
-    axios.get('/places/' + placeId)
-    .then(({data}) => {
-      const place = data.data
-
-      setTitle(place.title)
-      setAddress(place.address)
-      setAddedPhotos(place.photos)
-      setDescription(place.description)
-      setPerks(place.perks)
-      setExtraInfo(place.extraInfo)
-      setCheckIn(place.checkIn)
-      setCheckOut(place.checkOut)
-      setMaxGuests(place.maxGuests)
-    })
-  }, []);
-
   function inputHeader(text) {
     return <h2 className="text-2xl mt-4">{text}</h2>
   }
