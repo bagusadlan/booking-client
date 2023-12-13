@@ -7,7 +7,7 @@ function Perks({ selected, onChange }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-1">
       <label className="flex gap-2 border p-4 rounded-2xl">
-        <input type="checkbox" name="tv" onChange={handleCheckboxClick} />
+        <input type="checkbox" checked={selected.includes('tv')} name="tv" onChange={handleCheckboxClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -25,7 +25,7 @@ function Perks({ selected, onChange }) {
         <span>Television</span>
       </label>
       <label className="flex gap-2 border p-4 rounded-2xl">
-        <input type="checkbox" name="wifi" onChange={handleCheckboxClick} />
+        <input type="checkbox" checked={selected.includes('wifi')} name="wifi" onChange={handleCheckboxClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -43,7 +43,7 @@ function Perks({ selected, onChange }) {
         <span>Wifi</span>
       </label>
       <label className="flex gap-2 border p-4 rounded-2xl">
-        <input type="checkbox" name="radio" onChange={handleCheckboxClick} />
+        <input type="checkbox" checked={selected.includes('radio')} name="radio" onChange={handleCheckboxClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -61,7 +61,7 @@ function Perks({ selected, onChange }) {
         <span>Radio</span>
       </label>
       <label className="flex gap-2 border p-4 rounded-2xl">
-        <input type="checkbox" name="pets" onChange={handleCheckboxClick} />
+        <input type="checkbox" checked={selected.includes('pets')} name="pets" onChange={handleCheckboxClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -79,7 +79,7 @@ function Perks({ selected, onChange }) {
         <span>Pets</span>
       </label>
       <label className="flex gap-2 border p-4 rounded-2xl">
-        <input type="checkbox" name="parking" onChange={handleCheckboxClick} />
+        <input type="checkbox" checked={selected.includes('parking')} name="parking" onChange={handleCheckboxClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -97,7 +97,7 @@ function Perks({ selected, onChange }) {
         <span>Free parking spot</span>
       </label>
       <label className="flex gap-2 border p-4 rounded-2xl">
-        <input type="checkbox" name="entrance" onChange={handleCheckboxClick} />
+        <input type="checkbox" checked={selected.includes('entrance')} name="entrance" onChange={handleCheckboxClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
